@@ -27,8 +27,6 @@ Nincs megadott design. Content és Lo-Fi wireframe-ek készülnek a JustInMind a
 
 14. hét (2021. 05. 14.)
 
----
-
 ## Általános követelmények
 
 ### Képernyőtervek (Content wireframe)
@@ -63,8 +61,6 @@ Offline megtekinthetők a korábban betöltött adatok.
 
 Kommunikáció a PTMA szerverével JWT autentikációval https-en keresztül.
 
----
-
 ## Specifikus követelmények
 
 ### Képernyők részletes leírása
@@ -94,8 +90,6 @@ Az edzésterv részletező nézetének fejlécében megjelennek az edzésterv ad
 Az alkalmazás megnyitásakor a login képernyő jelenik meg. A belépés után az oldalsó menüból választhatjuk ki a képernyőket (Appointments, Workout plans, About), amik között szabadon léphetünk.
 Az edzéstervek listájából egy elemre kattintva a részletező képernyőre navigálunk, ahol visszanavigálással térünk vissza a listázó oldalra.
 A Logout gombra kattintva visszatérünk a bejelentkező képernyőre.
-
----
 
 ## Use-case diagramm
 
