@@ -1,2 +1,2 @@
-# meal-planner
-Meal planner aplication with food scanner and nutrition facts
+# ptma-android-client
+Check own appointments and workout plans from PTMA application server
