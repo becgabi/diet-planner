@@ -79,6 +79,14 @@
 <text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='205' y='-35.3'>Log out</text>
 </g><g class='edge' id='edge6'><title>yuml_trainer-&gt;yuml_log_out</title>
 <path d='M56.9312,-200.372C63.5802,-161.987 78.946,-105.837 114,-71 127.174,-57.9076 146.047,-50.1461 163.111,-45.5568' fill='none' stroke='black'/><path d='M56.9312,-200.372C63.5802,-161.987 78.946,-105.837 114,-71 127.174,-57.9076 146.047,-50.1461 163.111,-45.5568' fill='none' filter='url(#shadow)' stroke='black' style='stroke:{@stroke}; stroke-opacity:0.1; fill:none;'/>
+</g><g class='node' id='node9'><title>yuml_enter_email_nand_password</title>
+<ellipse cx='462' cy='-415' fill='lightgrey' filter='url(#shadow)' rx='65.5227' ry='33.8824' stroke='black' style='fill: black; stroke: none; fill-opacity:0.2'/><ellipse cx='462' cy='-415' fill='lightgrey' rx='65.5227' ry='33.8824' stroke='black' style='fill:url(#lightgrey);stroke:black;'/>
+<text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='462' y='-418.8'>Enter email</text>
+<text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='462' y='-403.8'>and password</text>
+</g><g class='edge' id='edge10'><title>yuml_sign_in-&gt;yuml_enter_email_nand_password</title>
+<path d='M256.206,-423.834C296.312,-422.104 352.807,-419.667 396.303,-417.791' fill='none' stroke='black' stroke-dasharray='5,2'/><path d='M256.206,-423.834C296.312,-422.104 352.807,-419.667 396.303,-417.791' fill='none' filter='url(#shadow)' stroke='black' stroke-dasharray='5,2' style='stroke:{@stroke}; stroke-opacity:0.1; fill:none;'/>
+<polygon fill='black' filter='url(#shadow)' points='246.124,-424.269 255.921,-419.342 251.12,-424.054 256.115,-423.838 256.115,-423.838 256.115,-423.838 251.12,-424.054 256.309,-428.334 246.124,-424.269 246.124,-424.269' stroke='black' style='fill: black; stroke: none; fill-opacity:0.2'/><polygon fill='black' points='246.124,-424.269 255.921,-419.342 251.12,-424.054 256.115,-423.838 256.115,-423.838 256.115,-423.838 251.12,-424.054 256.309,-428.334 246.124,-424.269 246.124,-424.269' stroke='black' style='fill:url(#black);stroke:black;'/>
+<text style='font-size:8px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='341' y='-424.8'>&lt;&lt;extend&gt;&gt;</text>
 </g><g class='node' id='node8'><title>yuml_pull_to_refresh</title>
 <ellipse cx='462' cy='-286' fill='lightgrey' filter='url(#shadow)' rx='67.7647' ry='23.1702' stroke='black' style='fill: black; stroke: none; fill-opacity:0.2'/><ellipse cx='462' cy='-286' fill='lightgrey' rx='67.7647' ry='23.1702' stroke='black' style='fill:url(#lightgrey);stroke:black;'/>
 <text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='462' y='-282.3'>Pull to refresh</text>
