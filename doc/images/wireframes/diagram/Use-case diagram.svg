@@ -68,11 +68,11 @@
 		<text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='205' y='-188.8'>plan details</text>
 	</g><g class='edge' id='edge4'><title>yuml_trainer-&gt;yuml_get_workout_nplan_details</title>
 		<path d='M78.1297,-234.78C97.8221,-229.339 125.512,-221.687 149.909,-214.946' fill='none' stroke='white'/><path d='M78.1297,-234.78C97.8221,-229.339 125.512,-221.687 149.909,-214.946' fill='none' filter='url(#shadow)' stroke='white' style='stroke:{@stroke}; stroke-opacity:0.1; fill:none;'/>
-	</g><g class='node' id='node7'><title>yuml_log_out</title>
-		<ellipse cx='205' cy='-39' fill='white' filter='url(#shadow)' rx='43.2674' ry='23.1702' stroke='white' style='fill: white; stroke: none; fill-opacity:0.2'/><ellipse cx='205' cy='-39' fill='white' rx='43.2674' ry='23.1702' stroke='white' style='fill:url(#white);stroke:white;'/>
-		<text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='205' y='-35.3'>Log out</text>
-	</g><g class='edge' id='edge6'><title>yuml_trainer-&gt;yuml_log_out</title>
-		<path d='M56.9312,-200.372C63.5802,-161.987 78.946,-105.837 114,-71 127.174,-57.9076 146.047,-50.1461 163.111,-45.5568' fill='none' stroke='white'/><path d='M56.9312,-200.372C63.5802,-161.987 78.946,-105.837 114,-71 127.174,-57.9076 146.047,-50.1461 163.111,-45.5568' fill='none' filter='url(#shadow)' stroke='white' style='stroke:{@stroke}; stroke-opacity:0.1; fill:none;'/>
+	</g><g class='node' id='node6'><title>yuml_log_out</title>
+		<ellipse cx='205' cy='-114' fill='white' filter='url(#shadow)' rx='57.9655' ry='33.8824' stroke='white' style='fill: white; stroke: none; fill-opacity:0.2'/><ellipse cx='205' cy='-114' fill='white' rx='57.9655' ry='33.8824' stroke='white' style='fill:url(#white);stroke:white;'/>
+		<text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='205' y='-117.8'>Log out</text>
+	</g><g class='edge' id='edge5'><title>yuml_trainer-&gt;yuml_log_out</title>
+		<path d='M76.4587,-200.089C86.6649,-185.129 99.5281,-169.021 114,-157 126.255,-146.82 141.325,-138.404 155.605,-131.798' fill='none' stroke='white'/><path d='M76.4587,-200.089C86.6649,-185.129 99.5281,-169.021 114,-157 126.255,-146.82 141.325,-138.404 155.605,-131.798' fill='none' filter='url(#shadow)' stroke='white' style='stroke:{@stroke}; stroke-opacity:0.1; fill:none;'/>
 	</g><g class='node' id='node9'><title>yuml_enter_email_nand_password</title>
 		<ellipse cx='462' cy='-415' fill='white' filter='url(#shadow)' rx='65.5227' ry='33.8824' stroke='white' style='fill: white; stroke: none; fill-opacity:0.2'/><ellipse cx='462' cy='-415' fill='white' rx='65.5227' ry='33.8824' stroke='white' style='fill:url(#white);stroke:white;'/>
 		<text style='font-size:10px; font-family:Verdana;' text-anchor='middle' transform='translate(0,0)' x='462' y='-418.8'>Enter email</text>
