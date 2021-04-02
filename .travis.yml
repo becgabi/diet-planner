@@ -1,0 +1,47 @@
+language: android
+dist: trusty
+android:
+  components:
+    - tools
+    - platform-tools
+
+    # The BuildTools version used by your project
+    - build-tools-30.0.3
+
+    # The SDK version used to compile your project
+    - android-30
+
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+    - android-26
+    - add-on
+    - extra
+
+before_install:
+  - yes | sdkmanager "platforms;android-30"
+
+deploy:
+  provider: releases
+  apikey: $GITHUB_KEY
+  file: app/build/outputs/apk/release/app-release.apk
+  skip_cleanup: true
+  on:
+    tags: true
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+notifications:
+  email: false
+  slack:
+    secure: FKhelcBFq8DeYYhWCYMvdmI7YZYpsLrAVVXf7iNV8dru3+PlizDY4dlnyzxV2OC+uQOLX2HO5DvNd6LF+sVqUnijRaX5B2q8NX7l7TvvXj0Pl5dObSz+x6LW6W11IEAzZUBM2HdS0ODQMX1InO1SfDSV6FUwo1AraaeEDfHSsTSS0hMc5tTsh5wAf3qLN5HiWsgGMQ75NX5OTJAFAjRyJbiK9gK1B3VxYDxFB0BeFUIyWIX7i1cUq+6R6SzpZT8kf0pFdpDk3myN2LMLEj5mOht1h7mRiKRxX3ix4D489b+Z7HRpKizBTGa8vt4TWGpRxh/NZrChzhy3V0szjVurUZF2s7LsHdeGol6UxwDaqGoJiaHRYdAvSKqsX1dbXh1gKWtp5zIyi/6ldo25vpW49Kk3jWHHcgzEZ6PJFxzJ2uzxRVIy+NaTpgVP/EggVsgOAUdhmdFwqj6sZMFBIlne7ekGCbztVRiKu9G3WNI+VN8aogTwNBfNSVP7hYuLa8K0Q+KvQrlcUFDBYAxD/Gv894wMtWfyFD6amdSHwmcvhb/c9Jpe7sdND8qiUM5ore4gKD+KM3Kxwy4HqDa5lzAsUB1s3nu6DUGYQH1/GYo874SYxXlj+q4HEuFkOVzs0JtFiSyhdEcwUxwTWMPuXvQBNxOg4ONHNq513DbXCAt4QxE=
