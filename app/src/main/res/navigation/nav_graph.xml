@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_login">
+
+    <!-- Login -->
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.ptma.ui.login.LoginFragment"
+        android:label="@string/menu_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_main"
+            app:destination="@id/nav_appointment_list"
+            app:popUpTo="@id/nav_login"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Appointment list -->
+    <fragment
+        android:id="@+id/nav_appointment_list"
+        android:name="com.ptma.ui.appointmentlist.AppointmentListFragment"
+        android:label="@string/menu_appointment_list"
+        tools:layout="@layout/fragment_appointment_list" />
+
+    <!-- Appointment list -->
+    <fragment
+        android:id="@+id/nav_workout_list"
+        android:name="com.ptma.ui.workoutlist.WorkoutListFragment"
+        android:label="@string/menu_workout_list"
+        tools:layout="@layout/fragment_workout_list">
+        <action
+            android:id="@+id/action_workout_list_to_detail"
+            app:destination="@id/nav_workout_detail">
+            <argument
+                android:name="id"
+                app:argType="long" />
+        </action>
+    </fragment>
+
+    <!-- Appointment detail -->
+    <fragment
+        android:id="@+id/nav_workout_detail"
+        android:name="com.ptma.ui.workoutdetail.WorkoutDetailFragment"
+        android:label="@string/menu_workout_detail"
+        tools:layout="@layout/fragment_workout_detail">
+        <argument
+            android:name="id"
+            android:defaultValue="0L"
+            app:argType="long" />
+    </fragment>
+
+</navigation>

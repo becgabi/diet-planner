@@ -22,7 +22,7 @@ class WorkoutDetailFragment :
         super.onStart()
 
         // TODO: set id from safe args
-        viewModel.load(1L)
+        // viewModel.load(1L)
     }
 
     override fun render(viewState: WorkoutDetailViewState) {

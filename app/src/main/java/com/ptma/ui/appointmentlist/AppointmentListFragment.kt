@@ -20,7 +20,7 @@ class AppointmentListFragment : RainbowCakeFragment<AppointmentListViewState, Ap
     override fun onStart() {
         super.onStart()
 
-        viewModel.load()
+        // viewModel.load()
     }
 
     override fun render(viewState: AppointmentListViewState) {
