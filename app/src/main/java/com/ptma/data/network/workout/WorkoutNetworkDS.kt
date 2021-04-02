@@ -5,7 +5,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class WorkoutDataSource @Inject constructor() {
+class WorkoutNetworkDS @Inject constructor() {
 
     suspend fun getWorkoutList(): List<Workout> {
         TODO("Call API")

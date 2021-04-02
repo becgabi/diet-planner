@@ -1,14 +1,17 @@
 package com.ptma.domain.appointment
 
-import com.ptma.data.network.appointment.AppointmentDataSource
+import com.ptma.data.disk.appointment.AppointmentDiskDS
+import com.ptma.data.network.appointment.AppointmentNetworkDS
 import javax.inject.Inject
 
 class AppointmentInteractor @Inject constructor(
-    private val appointmentDataSource: AppointmentDataSource
+    private val appointmentNetworkDS: AppointmentNetworkDS,
+    private val appointmentDiskDS: AppointmentDiskDS
 ) {
 
     suspend fun getAppointmentList(): List<Appointment> {
-        return appointmentDataSource.getAppointmentList()
+        // TODO: cache
+        return appointmentNetworkDS.getAppointmentList()
     }
 
 }

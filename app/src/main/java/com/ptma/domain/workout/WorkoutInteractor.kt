@@ -1,18 +1,22 @@
 package com.ptma.domain.workout
 
-import com.ptma.data.network.workout.WorkoutDataSource
+import com.ptma.data.disk.workout.WorkoutDiskDS
+import com.ptma.data.network.workout.WorkoutNetworkDS
 import javax.inject.Inject
 
 class WorkoutInteractor @Inject constructor(
-    private val workoutDataSource: WorkoutDataSource
+    private val workoutNetworkDS: WorkoutNetworkDS,
+    private val workoutDiskDS: WorkoutDiskDS
 ) {
 
     suspend fun getWorkoutList(): List<Workout> {
-        return workoutDataSource.getWorkoutList()
+        // TODO: cache
+        return workoutNetworkDS.getWorkoutList()
     }
 
     suspend fun getWorkout(id: Long): Workout {
-        return workoutDataSource.getWorkout(id)
+        // TODO: cache
+        return workoutNetworkDS.getWorkout(id)
     }
 
 }

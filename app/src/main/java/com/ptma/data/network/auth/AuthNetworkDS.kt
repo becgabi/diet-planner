@@ -5,7 +5,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthDataSource @Inject constructor() {
+class AuthNetworkDS @Inject constructor() {
 
     suspend fun login(request: UserCredentials) {
         TODO("Call API")

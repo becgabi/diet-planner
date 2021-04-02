@@ -5,7 +5,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AppointmentDataSource @Inject constructor() {
+class AppointmentNetworkDS @Inject constructor() {
 
     suspend fun getAppointmentList(): List<Appointment> {
         TODO("Call API")
