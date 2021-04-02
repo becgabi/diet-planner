@@ -1,8 +1,9 @@
-package com.ptma.domain.appointment
+package com.ptma.ui.appointmentlist
 
+import com.ptma.domain.appointment.AppointmentStatus
 import java.time.LocalDateTime
 
-class Appointment(
+class AppointmentListDto(
     val id: Long,
     val start: LocalDateTime,
     val end: LocalDateTime,
@@ -10,5 +11,3 @@ class Appointment(
     val trainerName: String,
     val status: AppointmentStatus
 )
-
-enum class AppointmentStatus { REQUESTED, ACCEPTED, CANCELED }

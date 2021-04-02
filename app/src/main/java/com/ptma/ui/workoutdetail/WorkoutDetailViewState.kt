@@ -4,4 +4,4 @@ sealed class WorkoutDetailViewState
 
 object Loading : WorkoutDetailViewState()
 
-data class WorkoutDetailReady(val data: String = "") : WorkoutDetailViewState()
+data class WorkoutDetailReady(val workout: WorkoutDetailDto) : WorkoutDetailViewState()

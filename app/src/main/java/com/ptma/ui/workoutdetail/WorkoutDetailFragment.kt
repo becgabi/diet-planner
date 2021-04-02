@@ -6,7 +6,8 @@ import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import com.ptma.R
 
-class WorkoutDetailFragment : RainbowCakeFragment<WorkoutDetailViewState, WorkoutDetailViewModel>() {
+class WorkoutDetailFragment :
+    RainbowCakeFragment<WorkoutDetailViewState, WorkoutDetailViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_workout_detail
@@ -20,7 +21,8 @@ class WorkoutDetailFragment : RainbowCakeFragment<WorkoutDetailViewState, Workou
     override fun onStart() {
         super.onStart()
 
-        viewModel.load()
+        // TODO: set id from safe args
+        viewModel.load(1L)
     }
 
     override fun render(viewState: WorkoutDetailViewState) {
