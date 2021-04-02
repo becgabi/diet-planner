@@ -1,0 +1,12 @@
+<resources>
+    <!-- General -->
+    <string name="app_name">PTMA Client</string>
+
+    <!-- Menu -->
+    <string name="menu_login">Login</string>
+    <string name="menu_appointment_list">Appointment list</string>
+    <string name="menu_workout_detail">Workout detail</string>
+    <string name="menu_workout_list">Workout list</string>
+    <string name="menu_logout">Logout</string>
+
+</resources>
