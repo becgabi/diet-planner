@@ -4,11 +4,11 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import javax.inject.Inject
 
 class WorkoutDetailViewModel @Inject constructor(
-    private val loginPresenter: WorkoutDetailPresenter
+    private val presenter: WorkoutDetailPresenter
 ) : RainbowCakeViewModel<WorkoutDetailViewState>(Loading) {
 
-    fun load() = execute {
-        viewState = WorkoutDetailReady(loginPresenter.getData())
+    fun load(id: Long) = execute {
+        viewState = WorkoutDetailReady(presenter.getWorkoutDetail(id))
     }
 
 }

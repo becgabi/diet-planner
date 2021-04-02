@@ -20,7 +20,7 @@ class WorkoutListFragment : RainbowCakeFragment<WorkoutListViewState, WorkoutLis
     override fun onStart() {
         super.onStart()
 
-        viewModel.load()
+        // viewModel.load()
     }
 
     override fun render(viewState: WorkoutListViewState) {

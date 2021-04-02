@@ -20,7 +20,8 @@ class LoginFragment : RainbowCakeFragment<LoginViewState, LoginViewModel>() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.load()
+        // TODO: put this method call into button click listener
+        // viewModel.login("email", "password")
     }
 
     override fun render(viewState: LoginViewState) {
