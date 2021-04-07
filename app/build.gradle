@@ -1,4 +1,5 @@
 plugins {
+    id 'org.hidetake.swagger.generator' version '2.18.2'
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
@@ -24,6 +25,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ["$projectDir/src", "$projectDir/src/main/java", "$buildDir/generated/openapi/src/main/kotlin"]
         }
     }
 
@@ -75,8 +82,52 @@ dependencies {
     annotationProcessor "org.mapstruct:mapstruct-processor:$mapstruct_version"
     kapt "org.mapstruct:mapstruct-processor:$mapstruct_version"
 
+    // OpenAPI
+    swaggerCodegen "org.openapitools:openapi-generator-cli:5.0.1"
+    implementation "io.swagger:swagger-annotations:1.6.2"
+
+    // Moshi
+    def moshi_version = '1.11.0'
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // Retrofit
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+
+    // OkHttp
+    def okhttp_version = '4.9.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
     // Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+swaggerSources {
+    itfs {
+        inputFile = file("$rootDir/specs/api.yaml")
+        code {
+            language = 'kotlin'
+            library = 'jvm-retrofit2'
+            outputDir = file("$buildDir/generated/openapi")
+            additionalProperties = [
+                    packageName       : "com.ptma",
+                    apiPackage        : "com.ptma.api",
+                    modelPackage      : "com.ptma.model",
+                    enumPropertyNaming: "UPPERCASE",
+                    useCoroutines     : true,
+                    moshiCodeGen      : true,
+                    responseWrapper   : null,
+                    modelMutable      : true
+            ]
+        }
+    }
+}
+
+// Generate sources before build
+preBuild.dependsOn generateSwaggerCode

@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  title: Api Documentation
+  description: Api Documentation
+  version: 1.0.0
+
+paths:
+  /login:
+    post:
+      summary: Login
+      operationId: login
+      requestBody:
+        description: User credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCredentialsDto'
+      responses:
+        200:
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResultDto'
+      tags:
+        - authentication
+
+  /api/appointments/own:
+    get:
+      summary: Return own appointments
+      operationId: findOwn
+      parameters:
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        200:
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppointmentMinDto'
+      tags:
+        - appointment
+
+  /api/workouts:
+    get:
+      summary: Return all workouts
+      operationId: findAll
+      responses:
+        200:
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkoutDto'
+      tags:
+        - workout
+
+  /api/workouts/{id}:
+    get:
+      summary: Get workout
+      operationId: getOne
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkoutDto'
+      tags:
+        - workout
+
+components:
+  schemas:
+
+    UserCredentialsDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    AuthResultDto:
+      type: object
+      properties:
+        jwtToken:
+          type: string
+
+    AppointmentMinDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        locationName:
+          type: string
+        trainerName:
+          type: string
+        status:
+          $ref: '#/components/schemas/AppointmentStatus'
+
+    AppointmentStatus:
+      type: string
+      enum:
+        - REQUESTED
+        - ACCEPTED
+        - CANCELED
+
+    WorkoutDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        trainerId:
+          type: integer
+          format: int64
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExerciseDetailDto'
+
+    ExerciseDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        sets:
+          type: integer
+        reps:
+          type: integer
+        duration:
+          type: integer
+        exercise:
+          $ref: '#/components/schemas/ExerciseDto'
+
+    ExerciseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        muscleGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/MuscleGroup'
+
+    MuscleGroup:
+      type: string
+      enum:
+        - ABS
+        - BACK
+        - BICEPS
+        - BOOTY
+        - CALVES
+        - CARDIO
+        - CHEST
+        - HAMSTRINGS
+        - SHOULDER
+        - TRICEPS
+        - QUADS
