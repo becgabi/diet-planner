@@ -8,7 +8,11 @@ plugins {
 apply plugin: "androidx.navigation.safeargs"
 
 Properties localProps = new Properties()
-localProps.load(new FileInputStream(project.rootProject.file('local.properties')))
+if (project.rootProject.file('local.properties').canRead()) {
+    localProps.load(new FileInputStream(project.rootProject.file('local.properties')))
+} else {
+    System.err.println("local.properties file is missing, please create it.")
+}
 
 android {
     compileSdkVersion 30
