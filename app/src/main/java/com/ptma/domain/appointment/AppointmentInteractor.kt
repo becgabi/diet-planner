@@ -1,7 +1,7 @@
 package com.ptma.domain.appointment
 
 import com.ptma.data.disk.appointment.AppointmentDiskDS
-import com.ptma.data.network.appointment.AppointmentNetworkDS
+import com.ptma.data.network.datasources.AppointmentNetworkDS
 import javax.inject.Inject
 
 class AppointmentInteractor @Inject constructor(
@@ -11,7 +11,9 @@ class AppointmentInteractor @Inject constructor(
 
     suspend fun getAppointmentList(): List<Appointment> {
         // TODO: cache
-        return appointmentNetworkDS.getAppointmentList()
+        val appointments = appointmentNetworkDS.getAppointmentList()
+
+        return AppointmentMapper.INSTANCE.fromDto(appointments)
     }
 
 }

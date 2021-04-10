@@ -8,7 +8,7 @@ class WorkoutDetailPresenter @Inject constructor(
     private val workoutInteractor: WorkoutInteractor
 ) {
 
-    suspend fun getWorkoutDetail(id: Long): WorkoutDetailDto = withIOContext {
+    suspend fun getWorkoutDetail(id: Long): WorkoutDetailDto? = withIOContext {
         WorkoutDetailDtoMapper.INSTANCE.toDto(
             workoutInteractor.getWorkout(id)
         )

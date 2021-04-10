@@ -1,4 +1,4 @@
-package com.ptma.data.disk
+package com.ptma.di
 
 import dagger.Module
 
