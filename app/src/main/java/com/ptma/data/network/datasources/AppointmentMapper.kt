@@ -1,5 +1,6 @@
-package com.ptma.domain.appointment
+package com.ptma.data.network.datasources
 
+import com.ptma.domain.appointment.Appointment
 import com.ptma.domain.util.DateTimeMapper
 import com.ptma.model.AppointmentMinDto
 import org.mapstruct.Mapper

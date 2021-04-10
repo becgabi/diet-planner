@@ -1,6 +1,6 @@
 package com.ptma.domain.appointment
 
-import com.ptma.data.disk.appointment.AppointmentDiskDS
+import com.ptma.data.disk.datasource.AppointmentDiskDS
 import com.ptma.data.network.datasources.AppointmentNetworkDS
 import javax.inject.Inject
 
@@ -9,11 +9,15 @@ class AppointmentInteractor @Inject constructor(
     private val appointmentDiskDS: AppointmentDiskDS
 ) {
 
-    suspend fun getAppointmentList(): List<Appointment> {
-        // TODO: cache
-        val appointments = appointmentNetworkDS.getAppointmentList()
-
-        return AppointmentMapper.INSTANCE.fromDto(appointments)
+    suspend fun getCachedAppointmentList(): List<Appointment> {
+        return appointmentDiskDS.findAll()
     }
 
+    suspend fun getAppointmentList(): List<Appointment> {
+        val appointments = appointmentNetworkDS.getAppointmentList()
+        if (appointments.isNotEmpty()) {
+            appointmentDiskDS.update(appointments)
+        }
+        return appointments
+    }
 }
