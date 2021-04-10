@@ -1,6 +1,7 @@
-package com.ptma.domain.workout
+package com.ptma.data.network.datasources
 
 import com.ptma.domain.util.DateTimeMapper
+import com.ptma.domain.workout.Workout
 import com.ptma.model.WorkoutDto
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping

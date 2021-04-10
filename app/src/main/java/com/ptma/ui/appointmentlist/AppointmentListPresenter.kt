@@ -8,10 +8,14 @@ class AppointmentListPresenter @Inject constructor(
     private val appointmentInteractor: AppointmentInteractor
 ) {
 
+    suspend fun getCachedAppointmentList(): List<AppointmentListDto> = withIOContext {
+        appointmentInteractor.getCachedAppointmentList()
+            .let(AppointmentListDtoMapper.INSTANCE::toDto)
+
+    }
+
     suspend fun getAppointmentList(): List<AppointmentListDto> = withIOContext {
-        AppointmentListDtoMapper.INSTANCE.toDto(
-            appointmentInteractor.getAppointmentList()
-        )
+        appointmentInteractor.getAppointmentList().let(AppointmentListDtoMapper.INSTANCE::toDto)
     }
 
 }
