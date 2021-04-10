@@ -1,4 +1,4 @@
-package com.ptma.data.network.workout
+package com.ptma.data.network.datasources
 
 import com.ptma.api.WorkoutApi
 import com.ptma.model.WorkoutDto

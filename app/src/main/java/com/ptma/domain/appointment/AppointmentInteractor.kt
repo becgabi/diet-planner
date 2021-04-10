@@ -1,7 +1,7 @@
 package com.ptma.domain.appointment
 
 import com.ptma.data.disk.appointment.AppointmentDiskDS
-import com.ptma.data.network.appointment.AppointmentNetworkDS
+import com.ptma.data.network.datasources.AppointmentNetworkDS
 import javax.inject.Inject
 
 class AppointmentInteractor @Inject constructor(

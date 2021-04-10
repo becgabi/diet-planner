@@ -1,4 +1,4 @@
-package com.ptma.data.network.appointment
+package com.ptma.data.network.datasources
 
 import com.ptma.api.AppointmentApi
 import com.ptma.model.AppointmentMinDto

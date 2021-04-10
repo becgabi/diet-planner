@@ -1,4 +1,4 @@
-package com.ptma.data.network.auth
+package com.ptma.data.network.datasources
 
 import com.ptma.api.AuthenticationApi
 import com.ptma.model.AuthResultDto

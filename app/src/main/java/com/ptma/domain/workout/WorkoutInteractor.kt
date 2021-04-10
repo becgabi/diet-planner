@@ -1,7 +1,7 @@
 package com.ptma.domain.workout
 
 import com.ptma.data.disk.workout.WorkoutDiskDS
-import com.ptma.data.network.workout.WorkoutNetworkDS
+import com.ptma.data.network.datasources.WorkoutNetworkDS
 import javax.inject.Inject
 
 class WorkoutInteractor @Inject constructor(
