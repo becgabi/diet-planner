@@ -5,7 +5,6 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,13 +20,13 @@ class JwtAuthInterceptor @Inject constructor(
     }
 
     private fun getAuthorizedRequest(chain: Interceptor.Chain): Request {
-        return Optional.ofNullable(authPreferencesDS.token)
-            .map { token: String? ->
+        return authPreferencesDS.token
+            ?.let { token: String? ->
                 chain.request()
                     .newBuilder()
                     .header("Authorization", String.format("Bearer %s", token))
                     .build()
             }
-            .orElse(chain.request())
+            ?: chain.request()
     }
 }

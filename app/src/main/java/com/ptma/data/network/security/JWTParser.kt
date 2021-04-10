@@ -42,17 +42,15 @@ class JWTParser @Inject constructor() {
 
     @Suppress("unchecked_cast")
     private fun getPermissions(claims: Claims): List<Permission> {
-        return Optional.ofNullable(claims["permissions"] as ArrayList<String>?)
-            .orElse(ArrayList())
+        return (claims["permissions"] as ArrayList<String>? ?: ArrayList())
             .map { name: String -> Permission.valueOf(name) }
             .toList()
     }
 
     private fun getExpirationTime(claims: Claims): LocalDateTime? {
-        return Optional.ofNullable(claims.expiration)
-            .map { obj: Date -> obj.toInstant() }
-            .map { instant: Instant -> instant.atZone(ZoneId.systemDefault()) }
-            .map { obj: ZonedDateTime -> obj.toLocalDateTime() }
-            .orElse(null)
+        return claims.expiration
+            ?.let { obj: Date -> obj.toInstant() }
+            ?.let { instant: Instant -> instant.atZone(ZoneId.systemDefault()) }
+            ?.let { obj: ZonedDateTime -> obj.toLocalDateTime() }
     }
 }

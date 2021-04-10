@@ -4,7 +4,6 @@ import com.ptma.data.network.security.JWTParser
 import com.ptma.data.network.security.Permission
 import timber.log.Timber
 import java.time.LocalDateTime
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,16 +23,14 @@ class AuthPreferencesDS @Inject constructor(
         }
 
     val tokenExpiration: LocalDateTime?
-        get() = Optional.ofNullable(token)
-            .map { token: String -> jwtParser.parseToken(token) }
-            .map { it.expirationTime }
-            .orElse(null)
+        get() = token
+            ?.let { jwtParser.parseToken(it) }
+            ?.expirationTime
 
     val permissions: List<Permission>?
-        get() = Optional.ofNullable(token)
-            .map { token: String -> jwtParser.parseToken(token) }
-            .map { it.permissions }
-            .orElse(null)
+        get() = token
+            ?.let { token: String -> jwtParser.parseToken(token) }
+            ?.permissions
 
     fun saveToken(token: String?) {
         provider.saveKeyValueEncrypted(KEY_JWT_TOKEN, token)
