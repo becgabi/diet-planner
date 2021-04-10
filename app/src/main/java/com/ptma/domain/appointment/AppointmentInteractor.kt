@@ -11,7 +11,9 @@ class AppointmentInteractor @Inject constructor(
 
     suspend fun getAppointmentList(): List<Appointment> {
         // TODO: cache
-        return appointmentNetworkDS.getAppointmentList()
+        val appointments = appointmentNetworkDS.getAppointmentList()
+
+        return AppointmentMapper.INSTANCE.fromDto(appointments)
     }
 
 }

@@ -11,12 +11,15 @@ class WorkoutInteractor @Inject constructor(
 
     suspend fun getWorkoutList(): List<Workout> {
         // TODO: cache
-        return workoutNetworkDS.getWorkoutList()
+        val workouts = workoutNetworkDS.getWorkoutList()
+
+        return WorkoutMapper.INSTANCE.fromDto(workouts)
     }
 
-    suspend fun getWorkout(id: Long): Workout {
+    suspend fun getWorkout(id: Long): Workout? {
         // TODO: cache
-        return workoutNetworkDS.getWorkout(id)
-    }
+        val workout = workoutNetworkDS.getWorkout(id)
 
+        return WorkoutMapper.INSTANCE.fromDto(workout)
+    }
 }

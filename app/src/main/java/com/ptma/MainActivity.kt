@@ -3,7 +3,7 @@ package com.ptma
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.ptma.databinding.ActivityMainBinding
@@ -31,7 +31,9 @@ class MainActivity : AppCompatActivity() {
             .setOpenableLayout(binding.drawerLayout)
             .build()
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration)
         NavigationUI.setupWithNavController(binding.navView, navController)
     }

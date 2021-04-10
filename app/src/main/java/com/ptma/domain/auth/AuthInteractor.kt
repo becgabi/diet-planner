@@ -7,8 +7,8 @@ class AuthInteractor @Inject constructor(
     private val authNetworkDS: AuthNetworkDS
 ) {
 
-    suspend fun login(request: UserCredentials) {
-        authNetworkDS.login(request)
+    suspend fun login(email: String, password: String) {
+        authNetworkDS.login(email, password)
     }
 
 }
