@@ -1,10 +1,18 @@
 plugins {
+    id 'org.hidetake.swagger.generator' version '2.18.2'
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
 
 apply plugin: "androidx.navigation.safeargs"
+
+Properties localProps = new Properties()
+if (project.rootProject.file('local.properties').canRead()) {
+    localProps.load(new FileInputStream(project.rootProject.file('local.properties')))
+} else {
+    System.err.println("local.properties file is missing, please create it.")
+}
 
 android {
     compileSdkVersion 30
@@ -18,12 +26,24 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Create BuildConfig variables
+        buildConfigField "String", "PTMA_SECRET_KEY", "\"" + localProps['secretKey'] + "\""
+        // buildConfigField "String", "PTMA_BASE_URL", '"https://ptma-test.herokuapp.com"'
+        // For testing with local server:
+        buildConfigField "String", "PTMA_BASE_URL", '"http://10.0.2.2:8080"'
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ["$projectDir/src", "$projectDir/src/main/java", "$buildDir/generated/openapi/src/main/kotlin"]
         }
     }
 
@@ -64,6 +84,23 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
 
+    // Room DB
+    def room_version = '2.2.6'
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // AndroidX Security
+    implementation 'androidx.security:security-crypto:1.1.0-alpha03'
+
+    // Java JWT
+    def jjwt_version = "0.11.2"
+    api "io.jsonwebtoken:jjwt-api:$jjwt_version"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:$jjwt_version"
+    runtimeOnly("io.jsonwebtoken:jjwt-orgjson:$jjwt_version") {
+        exclude group: 'org.json', module: 'json' //provided by Android natively
+    }
+
     // Dagger
     def dagger_version = '2.33'
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -75,8 +112,53 @@ dependencies {
     annotationProcessor "org.mapstruct:mapstruct-processor:$mapstruct_version"
     kapt "org.mapstruct:mapstruct-processor:$mapstruct_version"
 
+    // OpenAPI
+    swaggerCodegen "org.openapitools:openapi-generator-cli:5.0.1"
+    implementation "io.swagger:swagger-annotations:1.6.2"
+
+    // Moshi
+    def moshi_version = '1.11.0'
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // Retrofit
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+
+    // OkHttp
+    def okhttp_version = '4.9.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
     // Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+swaggerSources {
+    ptma {
+        inputFile = file("$rootDir/specs/api.yaml")
+        code {
+            language = 'kotlin'
+            library = 'jvm-retrofit2'
+            outputDir = file("$buildDir/generated/openapi")
+            additionalProperties = [
+                    packageName       : "com.ptma",
+                    apiPackage        : "com.ptma.api",
+                    modelPackage      : "com.ptma.model",
+                    enumPropertyNaming: "UPPERCASE",
+                    useCoroutines     : true,
+                    moshiCodeGen      : true,
+                    responseWrapper   : null,
+                    modelMutable      : true
+            ]
+        }
+    }
+}
+
+// Generate sources before build
+preBuild.dependsOn generateSwaggerCode

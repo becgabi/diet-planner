@@ -8,10 +8,11 @@ class WorkoutListPresenter @Inject constructor(
     private val workoutInteractor: WorkoutInteractor
 ) {
 
-    suspend fun getWorkoutList(): List<WorkoutListDto> = withIOContext {
-        WorkoutListDtoMapper.INSTANCE.toDto(
-            workoutInteractor.getWorkoutList()
-        )
+    suspend fun getCachedWorkoutList(): List<WorkoutListDto> = withIOContext {
+        workoutInteractor.getCachedWorkoutList().let(WorkoutListDtoMapper.INSTANCE::toDto)
     }
 
+    suspend fun getWorkoutList(): List<WorkoutListDto> = withIOContext {
+        workoutInteractor.getWorkoutList().let(WorkoutListDtoMapper.INSTANCE::toDto)
+    }
 }

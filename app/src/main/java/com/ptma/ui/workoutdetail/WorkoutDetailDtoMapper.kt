@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers
 @Mapper
 interface WorkoutDetailDtoMapper {
 
-    fun toDto(workout: Workout): WorkoutDetailDto
+    fun toDto(workout: Workout?): WorkoutDetailDto?
 
     companion object {
         @JvmField
