@@ -1,6 +1,9 @@
 <resources>
     <!-- General -->
     <string name="app_name">PTMA Client</string>
+    <string name="invalid_data">Invalid data</string>
+    <string name="no_element_in_list">There is no element in list</string>
+    <string name="search">Search</string>
 
     <!-- Menu -->
     <string name="menu_login">Login</string>
@@ -8,5 +11,23 @@
     <string name="menu_workout_detail">Workout detail</string>
     <string name="menu_workout_list">Workout list</string>
     <string name="menu_logout">Logout</string>
+
+    <!-- Login -->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Sign in</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="sign_in_again">Please sign in again!</string>
+    <string name="successful_login">Successful login</string>
+    <string name="successful_logout">Successful logout</string>
+
+    <!-- Workout list -->
+    <string name="duration">%d min</string>
+    <string name="workout_name_trans">workoutName%d</string>
+    <string name="muscle_groups_trans">muscleGroups%d</string>
+    <string name="duration_trans">duration%d</string>
+
+    <!-- Workout detail -->
+    <string name="title">%s (%dx%d)</string>
 
 </resources>

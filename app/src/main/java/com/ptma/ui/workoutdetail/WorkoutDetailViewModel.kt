@@ -11,9 +11,14 @@ class WorkoutDetailViewModel @Inject constructor(
     object WorkoutNotFountEvent : OneShotEvent
 
     fun load(id: Long) = execute {
-        val workoutDetail = presenter.getWorkoutDetail(id)
+        val workoutDetail = try {
+            presenter.getWorkoutDetail(id)
+        } catch (e: Exception) {
+            presenter.getCachedWorkoutDetail(id)
+        }
+
         if (workoutDetail != null) {
-            viewState = WorkoutDetailReady(workoutDetail)
+            viewState = DataReady(workoutDetail)
         } else {
             postEvent(WorkoutNotFountEvent)
         }

@@ -3,7 +3,7 @@ package com.ptma.ui.appointmentlist
 import com.ptma.domain.appointment.AppointmentStatus
 import java.time.LocalDateTime
 
-class AppointmentListDto(
+data class AppointmentListDto(
     val id: Long,
     val start: LocalDateTime,
     val end: LocalDateTime,

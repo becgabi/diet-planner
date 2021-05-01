@@ -25,7 +25,7 @@
         android:label="@string/menu_appointment_list"
         tools:layout="@layout/fragment_appointment_list" />
 
-    <!-- Appointment list -->
+    <!-- Workout list -->
     <fragment
         android:id="@+id/nav_workout_list"
         android:name="com.ptma.ui.workoutlist.WorkoutListFragment"
@@ -33,14 +33,14 @@
         tools:layout="@layout/fragment_workout_list">
         <action
             android:id="@+id/action_workout_list_to_detail"
-            app:destination="@id/nav_workout_detail">
-            <argument
-                android:name="id"
-                app:argType="long" />
-        </action>
+            app:destination="@id/nav_workout_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
-    <!-- Appointment detail -->
+    <!-- Workout detail -->
     <fragment
         android:id="@+id/nav_workout_detail"
         android:name="com.ptma.ui.workoutdetail.WorkoutDetailFragment"
@@ -51,5 +51,10 @@
             android:defaultValue="0L"
             app:argType="long" />
     </fragment>
+
+    <!-- Global actions -->
+    <action
+        android:id="@+id/action_global_login"
+        app:destination="@id/nav_login" />
 
 </navigation>

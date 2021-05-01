@@ -4,4 +4,4 @@ sealed class WorkoutListViewState
 
 object Loading : WorkoutListViewState()
 
-data class WorkoutListReady(val workouts: List<WorkoutListDto>) : WorkoutListViewState()
+data class ListReady(val workouts: List<WorkoutListDto>) : WorkoutListViewState()
