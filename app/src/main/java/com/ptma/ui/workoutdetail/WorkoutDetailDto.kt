@@ -1,6 +1,5 @@
 package com.ptma.ui.workoutdetail
 
-import com.ptma.domain.workout.ExerciseDetail
 import com.ptma.domain.workout.MuscleGroup
 
 class WorkoutDetailDto(
@@ -8,5 +7,5 @@ class WorkoutDetailDto(
     val name: String,
     val sumDuration: Int,
     val muscleGroups: List<MuscleGroup>,
-    val exercises: List<ExerciseDetail>
+    val exercises: List<ExerciseDetailDto>
 )

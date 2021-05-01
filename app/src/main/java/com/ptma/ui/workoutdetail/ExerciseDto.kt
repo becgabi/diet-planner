@@ -1,6 +1,6 @@
 package com.ptma.ui.workoutdetail
 
-class ExerciseDto(
+data class ExerciseDto(
     val id: Long,
     val name: String,
     val description: String,

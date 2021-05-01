@@ -4,5 +4,4 @@ sealed class AppointmentListViewState
 
 object Loading : AppointmentListViewState()
 
-data class AppointmentListReady(val appointments: List<AppointmentListDto>) :
-    AppointmentListViewState()
+data class ListReady(val appointments: List<AppointmentListDto>) : AppointmentListViewState()

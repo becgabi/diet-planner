@@ -7,8 +7,22 @@ class AppointmentListViewModel @Inject constructor(
     private val presenter: AppointmentListPresenter
 ) : RainbowCakeViewModel<AppointmentListViewState>(Loading) {
 
-    fun load() = execute {
-        viewState = AppointmentListReady(presenter.getAppointmentList())
+    init {
+        load()
+    }
+
+    fun reload() = execute {
+        viewState = Loading
+        load()
+    }
+
+    private fun load() = execute {
+        val appointments = try {
+            presenter.getAppointmentList()
+        } catch (e: Exception) {
+            presenter.getCachedAppointmentList()
+        }
+        viewState = ListReady(appointments)
     }
 
 }
