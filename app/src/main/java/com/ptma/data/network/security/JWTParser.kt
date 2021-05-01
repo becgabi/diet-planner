@@ -42,7 +42,7 @@ class JWTParser @Inject constructor() {
 
     @Suppress("unchecked_cast")
     private fun getPermissions(claims: Claims): List<Permission> {
-        return (claims["permissions"] as ArrayList<String>? ?: ArrayList())
+        return (claims["authorities"] as ArrayList<String>? ?: ArrayList())
             .map { name: String -> Permission.valueOf(name) }
             .toList()
     }

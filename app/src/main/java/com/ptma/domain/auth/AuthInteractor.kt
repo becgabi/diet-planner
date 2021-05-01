@@ -32,6 +32,7 @@ class AuthInteractor @Inject constructor(
             Timber.i("Successful login with user $email")
         } else {
             Timber.i("Login has failed with user $email")
+            throw IllegalAccessException()
         }
     }
 

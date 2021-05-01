@@ -7,8 +7,22 @@ class WorkoutListViewModel @Inject constructor(
     private val presenter: WorkoutListPresenter
 ) : RainbowCakeViewModel<WorkoutListViewState>(Loading) {
 
-    fun load() = execute {
-        viewState = WorkoutListReady(presenter.getWorkoutList())
+    init {
+        load()
+    }
+
+    fun reload() = execute {
+        viewState = Loading
+        load()
+    }
+
+    private fun load() = execute {
+        val workouts = try {
+            presenter.getWorkoutList()
+        } catch (e: Exception) {
+            presenter.getCachedWorkoutList()
+        }
+        viewState = ListReady(workouts)
     }
 
 }
