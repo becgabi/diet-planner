@@ -70,11 +70,9 @@ class MainActivity : AppCompatActivity(), OnDestinationChangedListener {
     ) {
         val loginFragment = destination.id == controller.graph.startDestination
         supportActionBar?.setDisplayHomeAsUpEnabled(!loginFragment)
-        if (!loginFragment) {
-            if (!loginViewModel.isUserLoggedIn) {
-                logout()
-                Snackbar.make(binding.root, R.string.sign_in_again, Snackbar.LENGTH_LONG).show()
-            }
+        if (!loginFragment && !loginViewModel.isUserLoggedIn) {
+            logout()
+            Snackbar.make(binding.root, R.string.sign_in_again, Snackbar.LENGTH_LONG).show()
         }
     }
 
