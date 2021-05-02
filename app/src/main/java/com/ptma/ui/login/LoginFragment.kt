@@ -13,6 +13,8 @@ import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.ViewModelScope
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ptma.R
 import com.ptma.data.network.security.Permission
 import com.ptma.databinding.FragmentLoginBinding
@@ -23,6 +25,8 @@ import com.ptma.ui.util.showSnackbar
 class LoginFragment : RainbowCakeFragment<LoginViewState, LoginViewModel>() {
 
     private lateinit var binding: FragmentLoginBinding
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun provideViewModel() = getViewModelFromFactory(scope = ViewModelScope.Activity)
 
@@ -39,6 +43,8 @@ class LoginFragment : RainbowCakeFragment<LoginViewState, LoginViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         initForms()
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(requireContext())
 
         if (viewModel.isUserLoggedIn) {
             handleLogin()
@@ -61,8 +67,15 @@ class LoginFragment : RainbowCakeFragment<LoginViewState, LoginViewModel>() {
             is LoggedIn -> {
                 binding.pbLoading.visibility = View.GONE
                 showSnackbar(R.string.successful_login)
+                logLoginEvent()
                 handleLogin()
             }
+        }
+    }
+
+    private fun logLoginEvent() {
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN) {
+            param("email", binding.etUsername.text.toString())
         }
     }
 
