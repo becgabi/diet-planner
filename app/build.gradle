@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 apply plugin: "androidx.navigation.safeargs.kotlin"
@@ -139,6 +141,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.3'
+    implementation 'com.google.firebase:firebase-crashlytics:17.4.1'
 }
 
 swaggerSources {
